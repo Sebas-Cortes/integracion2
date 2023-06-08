@@ -1,0 +1,22 @@
+{% extends 'core/template.html' %}
+{% load static %}
+
+{% block titulo %}
+<title>¡Bienvenido!| Cesfam</title>
+{% endblock titulo %}
+
+{% block all %}
+<center>
+    <div class="form-body" style="justify-content: center;">
+      <img src="{% static 'core/img/loginincon.png' %}" alt="user-login">
+      <p class="text">Inicio de Sesión</p>
+
+      <form class="login-form" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button class="boton" style="text-decoration-color: white;" type="submit" name="iniciar sesión">iniciar sesión</button>
+        <div class="row"></div>
+    </form>
+    </div>
+  </center>
+{% endblock all %}

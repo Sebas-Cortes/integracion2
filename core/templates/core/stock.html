@@ -1,0 +1,82 @@
+{% extends 'core/template.html' %}
+{% load static %}
+
+{% block titulo %}
+<title>¡Bienvenido!| Cesfam</title>
+{% endblock titulo %}
+
+{% block all %}
+<div class="container-fluid">
+    <!--<h1 class="text" style="text-align: center; color: rgb(0, 76, 255); font-family: Lobster; "><br><b>Generar
+                prescripciones<b></h1>
+                -->
+    {% if request.user.is_staff %}
+    <br>
+    <br>
+    <br>
+    {% endif %}
+
+    <div class="row carta " >
+
+        <div class="card , col-md-3 col-sm-12  col-xs-12, mx-auto form-body"
+            style="width: 100%; margin-top: 5%; margin-bottom: 10%; border-color: #02fa17; ">
+            <div class="card-header" style="text-align: center;">
+                <div class="h1 card-tittle  " style="font-family:Goldman;text-decoration:none; font-size: 500%;">Stock
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-4">
+                    <a href="{% url 'inicio' %}" class="btn btn-success mb-3 boton"> <i
+                        class="bi bi-arrow-return-left" style="width: 30%; height: 30%;"></i> Devolverse al menu principal</a>
+                </div>
+                <div class="col-4"></div>
+                <div class="col-4">
+                    <a href="{% url 'addstock' %}" class="btn btn-success mb-3 boton"> <i class="bi bi-plus-circle"
+                        style="width: 30%; height: 30%;"></i> Agregar stock</a>
+                </div>
+            </div>
+
+            <div class="card-body">
+
+                <div class="row">
+                    <div class="col-12">
+                        <div class="h1"> Medicamentos:</div>
+                    </div>
+                </div>
+                <div class="row ">
+                    <div class="card " style="border-color: #02fa17">
+                        <div class="row" style="text-align: center;">
+                            <div class="col-2">
+                                <div class="h4">Tipo medicamento:</div>
+                            </div>
+                            <div class="col-2">
+                                
+                            </div>
+                            <div class="col-2">
+                                <div class="h4">Cantidad: </div>
+                            </div>
+                            <div class="col-2">
+                                
+                            </div>
+                            <div class="col-2">
+                                <div class="h4"></div>
+                            </div>
+                            <div class="col-2">
+                                <a href="#" class="btn btn-danger mb-1 boton"> <i class="bi bi-trash-fill"></i> eliminar de stock</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+
+
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+{% endblock all %}

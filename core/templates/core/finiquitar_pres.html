@@ -1,0 +1,76 @@
+{% extends 'core/template.html' %}
+{% load static %}
+
+{% block titulo %}
+<title>¡Bienvenido!| Cesfam</title>
+{% endblock titulo %}
+
+{% block all %}
+<div class="container-fluid">
+    <!--<h1 class="text" style="text-align: center; color: rgb(0, 76, 255); font-family: Lobster; "><br><b>Generar
+                prescripciones<b></h1>
+                -->
+    {% if request.user.is_staff %}
+    <br>
+    <br>
+    <br>
+    {% endif %}
+
+    <div class="row  ">
+
+        <div class="card , col-md-3 col-sm-12  col-xs-12, mx-auto form-body"
+            style="width: 100%; margin-top: 5%; margin-bottom: 10%; border-color: #02fa17; ">
+            <div class="card-header" style="text-align: center;">
+                <div class="h1 card-tittle  " style="font-family:Goldman;text-decoration:none; font-size: 500%;">Finiquitar prescripciones
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-4">
+                    <a href="{% url 'pres' %}" class="btn btn-success mb-3 boton"> <i class="bi bi-arrow-return-left"
+                            style="width: 30%; height: 30%;"></i> Volver</a>
+                </div>
+                <div class="col-4"></div>
+                <div class="col-4">
+                </div>
+            </div>
+
+            <div class="card-body">
+                <div class="row ">
+                    <div  style="border-color: #02fa17">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="h1"> Prescripciones del rut:</div>
+                            </div>
+
+                            <div class="form-body" style="width:100%; height:100%" >
+
+                                <div class="row">
+                                    <!--Aqui va el formulario de buscar prescripciones-->
+                                    <br>
+
+                                </div>
+                                <div class="row">
+                                    <div class="col-4"></div>
+                                    <div class="col-4">
+                                        <a href="#" class="btn btn-success mb-1 boton"><i class="bi bi-check-lg" style="width: 30%; height: 30%;"></i>  Finiquitar prescripción</a>
+                                    </div>
+                                    <div class="col-4"></div>
+
+                                </div>
+                            </div>
+
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+
+    </div>
+
+
+</div>
+
+
+{% endblock all %}
