@@ -14,6 +14,10 @@ class CustomLoginView(LoginView):
 
 def inicio (request):
     return render (request,'core/inicio.html')
+def sucursal (request):
+    return render (request,'core/sucursal.html')
+def addsucursal (request):
+    return render (request,'core/addsucursal.html')
 def pres (request):
     return render (request,'core/pres.html')
 def finiquitar_pres (request):

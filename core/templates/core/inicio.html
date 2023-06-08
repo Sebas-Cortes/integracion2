@@ -26,7 +26,7 @@
 
                 <div class="row">
                     <div class="col-4"></div>
-                    <div class="col-4"><a href="{% url 'stock' %}" class="btn btn-success mb-3 boton">Crear</a>
+                    <div class="col-4"><a href="{% url 'stock' %}" class="btn btn-success mb-3 boton">Ver</a>
                     </div>
                     <div class="col-4"></div>
                 </div>
@@ -37,10 +37,10 @@
             </div>
         </div>
         <div class="card , col-md-3 col-sm-12  col-xs-12, mx-auto form-body"
-            style="width: 15rem; margin-top: 7%; margin-bottom: 10%;border-color: #02fa17">
-            <br><img src="{% static 'core/img/verprescripcion.jpg' %}" class="card-img-top" alt="..."
-                style="width:190px;height:155px;">
-            <div >
+        style="width: 15rem; margin-top: 7%; margin-bottom: 10%;border-color: #02fa17">
+        <br><img src="{% static 'core/img/verprescripcion.jpg' %}" class="card-img-top" alt="..."
+            style="width:190px;height:155px;">
+        <div >
                 <br>
                 <div class="h5" style="text-decoration-color: black; margin-left: 20%;">Prescripciones</div>
 
@@ -54,6 +54,26 @@
                 </div>
             </div>
         </div>
+        {% if request.user.is_staff %}
+        <div class="card , col-md-3 col-sm-12  col-xs-12, mx-auto form-body"
+        style="width: 15rem; margin-top: 7%; margin-bottom: 10%;border-color: #02fa17">
+        <br><img src="{% static 'core/img/sucursal.png' %}" class="card-img-top" alt="..."
+            style="width:190px;height:155px;">
+        <div >
+            <br>
+            <div class="h5" style="text-decoration-color: black; margin-left: 30%;">Sucursales</div>
+
+            <div class="row">
+                <div class="col-4"></div>
+                <div class="col-4"><a href="{% url 'sucursal' %}" class="btn btn-success mb-3 boton">Ver</a></div>
+                <div class="col-4"></div>
+            </div>
+            <!--CREAR HTML Y CODIGO-->
+            <div class="col-md-10">
+            </div>
+        </div>
+    </div>
+        {% endif %} 
 
     </div>
 </div>
