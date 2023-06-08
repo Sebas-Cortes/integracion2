@@ -35,11 +35,11 @@
                     <br>
                     <div class="col" style="justify-content: start;">
                         <a href="{% url 'inicio' %}"
-                             class="h1 "style="font-family:Goldman;text-decoration:none ; color: white;">CESFAM</a>
+                            class="h1 "style="font-family:Goldman;text-decoration:none ; color: white;">CESFAM</a>
                     </div>
                     <div class="col-9"></div>
                     <div class="col" style="justify-content: end;">
-                        <a style="border-color: #001a57;" class="btn btn-success"  href="#">Salir</a>
+                        <a style="border-color: #001a57;" class="btn btn-success"  href="{% url 'logout' %}">Salir</a>
 
                     </div>
                 </div>
@@ -49,6 +49,18 @@
                 </div>
             </div>
 
+        </div>
+        <div class="row">
+            {% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+            {{ message.message }}
+            <button type="button" class="close" data-bs-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    {% endfor %}
+    {% endif %}
         </div>
         {% block all %}
 

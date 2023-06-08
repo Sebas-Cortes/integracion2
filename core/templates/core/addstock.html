@@ -46,16 +46,12 @@
 
                                 <div class="row">
                                     <!--Aqui va el formulario de añadir stock-->
-
-
-                                </div>
-                                <div class="row">
-                                    <div class="col-4"></div>
-                                    <div class="col-4">
-                                        <a href="#" class="btn btn-success mb-1 boton"> <i class="bi bi-plus-circle"
-                                            style="width: 30%; height: 30%;"></i> Añadir al stock</a>
-                                    </div>
-                                    <div class="col-4"></div>
+                                    <form action="{% url 'addstock' %}" method="post" class="form-control">
+                                        {% csrf_token %}
+                                        {{ form.as_p }}
+                                        <button type="submit" class="btn btn-success mb-1 boton"><i class="bi bi-plus-circle"
+                                            style="width: 30%; height: 30%;"></i> Añadir al stock</button>
+                                    </form>
 
                                 </div>
                             </div>

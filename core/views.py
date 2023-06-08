@@ -1,7 +1,8 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.views import LoginView
-
-from core.forms import LoginForm
+from django.contrib import messages
+from core.forms import LoginForm, LoteForm
+from core.models import Lote, Sucursal
 
 # Create your views here.
 def login(request):
@@ -18,6 +19,31 @@ def pres (request):
 def finiquitar_pres (request):
     return render (request,'core/finiquitar_pres.html')
 def stock (request):
-    return render (request,'core/stock.html')
+    stock = Lote.objects.all()
+    contexto = {'stock' : stock}
+
+    return render (request,'core/stock.html', contexto)
 def addstock (request):
-    return render (request,'core/addstock.html')
+    if request.method == 'POST':
+        sucursal = Sucursal.objects.get(pk=1)
+        form = LoteForm(request.POST)
+        if form.is_valid():
+            guardado = form.save(commit=False)
+            guardado.sucursal = sucursal
+            guardado.save()
+            nombre = form.cleaned_data['tipo']
+            messages.success(request, f'Medicamento {nombre} agregado con exito')
+            
+            return redirect('stock')
+    else:
+        form = LoteForm()
+
+    contexto = {'form' : form}
+    return render (request,'core/addstock.html', contexto)
+
+def borrarStock(request, id):
+    lote = Lote.objects.get(pk=id)
+    lote.delete()
+    messages.success(request, 'Lote eliminado con exito')
+
+    return redirect('stock')
