@@ -52,7 +52,7 @@ def stock (request):
     return render (request,'core/stock.html', contexto)
 def addstock (request):
     if request.method == 'POST':
-        sucursal = Sucursal.objects.get(pk=1)
+        sucursal = Sucursal.objects.all()[0]
         form = LoteForm(request.POST)
         if form.is_valid():
             guardado = form.save(commit=False)
