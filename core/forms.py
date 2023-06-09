@@ -56,3 +56,27 @@ class SucursalForm(forms.ModelForm):
                 'placeholder' : 'Region'
             })
         }
+
+class UserForm(UserCreationForm):
+    password1 = forms.CharField(label='Contraseña',widget=forms.PasswordInput(attrs={'class': 'form-control bg-white text-dark','placeholder':'Contraseña','id':'reg-pass'}))
+    password2 = forms.CharField(label='Confirmas contraseña',widget=forms.PasswordInput(attrs={'class': 'form-control bg-white text-dark','placeholder':'Contraseña','id':'reg-pass2'}))
+    class Meta:
+        model = User
+        fields = ['username', 'email', 'password1', 'password2']
+        help_texts = {k: "" for k in fields}
+        labels = {
+            'username': 'Nombre de usuario',
+            'email': 'Correo electrónico',
+            'password1': 'Contraseña',
+            'password2': 'Confirmar contraseña',
+        }
+        widgets = {
+            'username': forms.TextInput(attrs={
+                'class': 'form-control bg-white text-dark',
+                'placeholder': 'Nombre de usuario',
+                'id': 'reg-usu'}),
+            'email': forms.EmailInput(attrs={
+                'class': 'form-control bg-white text-dark',
+                'placeholder': 'Correo electrónico',
+                'id': 'reg-email'})
+        }

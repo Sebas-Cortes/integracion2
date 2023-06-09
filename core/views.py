@@ -1,9 +1,9 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.views import LoginView
 from django.contrib import messages
-from core.forms import LoginForm, LoteForm, SucursalForm
+from core.forms import LoginForm, LoteForm, SucursalForm, UserForm
 from core.models import Lote, Sucursal
-
+from django.contrib.admin.views.decorators import staff_member_required
 # Create your views here.
 def login(request):
     return render(request, 'core/login.html')
@@ -74,3 +74,19 @@ def borrarStock(request, id):
     messages.success(request, 'Lote eliminado con exito')
 
     return redirect('stock')
+
+@staff_member_required
+def registro(request):
+    if request.method == 'POST':
+        form = UserForm(request.POST)
+        if form.is_valid():
+            form.save()
+            nick1 = form.cleaned_data['username']
+            messages.success(request, f'Usuario {nick1} creado con exito')
+            return redirect('inicio')
+    else:
+        form = UserForm()
+
+    contexto = { 'form' : form }
+
+    return render(request,'core/registro.html', contexto)
