@@ -1,7 +1,7 @@
 from django.urls import path
 from core.views import inicio
 from django.contrib.auth.views import LogoutView
-from .views import CustomLoginView, addstock, addsucursal, borrarStock, finiquitar_pres, pres, stock, sucursal
+from .views import CustomLoginView, addstock, addsucursal, borrarStock, borrarSucursal, finiquitar_pres, pres, stock, sucursal
 from django.contrib.auth.decorators import login_required
 
 urlpatterns = [
@@ -15,4 +15,5 @@ urlpatterns = [
     path('sucursal',sucursal, name="sucursal"),
     path('addsucursal',addsucursal, name="addsucursal"),
     path('borrarStock/<int:id>', borrarStock, name='borrarStock'),
+    path('borrarSucursales/<int:id>', borrarSucursal, name='borrarSucursal'),
 ]

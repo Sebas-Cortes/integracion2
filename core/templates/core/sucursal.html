@@ -41,28 +41,22 @@
 
                 <div class="row ">
                     <div class="card " style="border-color: #02fa17">
-                        
+                        {% for s in sucursal %}
                         <div class="row" style="text-align: center;">
-                            <div class="col-2">
-                                
+                            <div class="col-3">
+                                <p class="text-black h5">Dirección: {{ s.direccion }}</p>
                             </div>
-                            <div class="col-2">
-                                
+                            <div class="col-3">
+                                <p class="text-black h5">Comuna: {{ s.comuna }}</p>
                             </div>
-                            <div class="col-2">
-                                
+                            <div class="col-3">
+                                <p class="text-black h5">Region: {{ s.region }}</p>
                             </div>
-                            <div class="col-2">
-                                
-                            </div>
-                            <div class="col-2">
-                                
-                            </div>
-                            <div class="col-2">
-                                <a href="#" class="btn btn-danger mb-1 boton"> <i class="bi bi-trash-fill"></i> Eliminar sucursal</a>
+                            <div class="col-3">
+                                <a href="{% url 'borrarSucursal' s.idSucursal %}" class="btn btn-danger mb-1 boton"> <i class="bi bi-trash-fill"></i> Eliminar sucursal</a>
                             </div>
                         </div>
-                        
+                        {% endfor %}
                     </div>
 
                 </div>

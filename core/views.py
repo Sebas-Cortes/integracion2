@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.views import LoginView
 from django.contrib import messages
-from core.forms import LoginForm, LoteForm
+from core.forms import LoginForm, LoteForm, SucursalForm
 from core.models import Lote, Sucursal
 
 # Create your views here.
@@ -15,9 +15,32 @@ class CustomLoginView(LoginView):
 def inicio (request):
     return render (request,'core/inicio.html')
 def sucursal (request):
-    return render (request,'core/sucursal.html')
+    sucursal = Sucursal.objects.all()
+    contexto = {'sucursal' : sucursal}
+    return render (request,'core/sucursal.html', contexto)
+
 def addsucursal (request):
-    return render (request,'core/addsucursal.html')
+    if request.method == 'POST':
+        form = SucursalForm(request.POST)
+        if form.is_valid():
+            form.save()
+            nombre = form.cleaned_data['direccion']
+            messages.success(request, f'sucursal {nombre} agregado con exito')
+            
+            return redirect('sucursal')
+    else:
+        form = SucursalForm()
+
+    contexto = {'form' : form}
+    return render (request,'core/addsucursal.html', contexto)
+
+def borrarSucursal(request, id):
+    sucursal = Sucursal.objects.get(pk=id)
+    sucursal.delete()
+    messages.success(request, 'Sucursal eliminada con exito')
+
+    return redirect('sucursal')
+
 def pres (request):
     return render (request,'core/pres.html')
 def finiquitar_pres (request):
