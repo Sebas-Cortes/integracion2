@@ -9,6 +9,9 @@ class Sucursal(models.Model):
     comuna = models.CharField(max_length=50, blank=False, null=False, verbose_name='Comuna de la sucural')
     region = models.CharField(max_length=50, blank=False, null=False, verbose_name='Region de la sucursal')
 
+    def __str__(self):
+        return self.direccion
+
 class Lote(models.Model):
     idLote = models.AutoField(primary_key=True, verbose_name='Id del lote')
     tipo = models.CharField(max_length=30, blank=False, null=False, verbose_name='Tipo de pastillas')
