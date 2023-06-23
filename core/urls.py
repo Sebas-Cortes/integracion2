@@ -1,7 +1,7 @@
 from django.urls import path
 from core.views import inicio
 from django.contrib.auth.views import LogoutView
-from .views import CustomLoginView, addstock, registro, addsucursal, borrarStock, borrarSucursal, finiquitar_pres, pres, stock, sucursal
+from .views import CustomLoginView, addstock, consultaPres, registro, addsucursal, borrarStock, borrarSucursal, finiquitar_pres, pres, stock, sucursal
 from django.contrib.auth.decorators import login_required
 
 urlpatterns = [
@@ -9,7 +9,7 @@ urlpatterns = [
     path('logout/', login_required(LogoutView.as_view(template_name='core/login.html')), name='logout'),
     path('inicio',inicio, name="inicio"),
     path('pres',pres, name="pres"),
-    path('finiquitar_pres',finiquitar_pres, name="finiquitar_pres"),
+    path('finiquitar_pres/<str:rut>',finiquitar_pres, name="finiquitar_pres"),
     path('stock',stock, name="stock"),
     path('addstock',addstock, name="addstock"),
     path('sucursal',sucursal, name="sucursal"),
@@ -17,4 +17,5 @@ urlpatterns = [
     path('borrarStock/<int:id>', borrarStock, name='borrarStock'),
     path('borrarSucursales/<int:id>', borrarSucursal, name='borrarSucursal'),
     path('registro', login_required(registro), name='registro'),
+    path('consultaPres/', consultaPres, name='consultaPres')
 ]

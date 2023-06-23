@@ -10,6 +10,6 @@ from django.views.decorators.csrf import csrf_exempt
 @api_view(['GET'])
 def lote(request):
     if request.method == 'GET':
-        LineUps = Lote.objects.all()
-        serializer = LoteSerializers(LineUps,many=True)
+        Lotes = Lote.objects.all()
+        serializer = LoteSerializers(Lotes,many=True)
         return Response(serializer.data)

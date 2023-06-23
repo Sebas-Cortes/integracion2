@@ -4,6 +4,7 @@ from django.contrib import messages
 from core.forms import LoginForm, LoteForm, SucursalForm, UserForm
 from core.models import Lote, Sucursal
 from django.contrib.admin.views.decorators import staff_member_required
+from core.services import get_pres
 # Create your views here.
 def login(request):
     return render(request, 'core/login.html')
@@ -43,8 +44,11 @@ def borrarSucursal(request, id):
 
 def pres (request):
     return render (request,'core/pres.html')
-def finiquitar_pres (request):
-    return render (request,'core/finiquitar_pres.html')
+def finiquitar_pres (request, rut):
+    pres = get_pres(rut)
+    contexto = {'pres' : pres,
+                'rut' : rut}
+    return render (request,'core/finiquitar_pres.html', contexto)
 def stock (request):
     stock = Lote.objects.all()
     contexto = {'stock' : stock}
@@ -90,3 +94,7 @@ def registro(request):
     contexto = { 'form' : form }
 
     return render(request,'core/registro.html', contexto)
+
+def consultaPres(request):
+    rut1 = request.POST['pres']
+    return redirect('finiquitar_pres', rut=rut1)
