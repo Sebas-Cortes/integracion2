@@ -54,6 +54,14 @@
                                             <div class="ms-2 me-auto">
                                                 <div class="fw-bold">Medicamento</div>
                                                 {{ m.medicamento }}
+                                                {{ estados.m.idReceta }}
+                                                {% for e in estados %}
+                                                    {% if e.id == m.idReceta and e.estado == True %}
+                                                    <i class="bi bi-check-circle"></i>
+                                                    {% elif e.id == m.idReceta and e.estado == False %}
+                                                    <i class="bi bi-x-circle"></i>
+                                                    {% endif %}
+                                                {% endfor %}
                                             </div>
                                             <span class="badge bg-primary rounded-pill">{{ m.cantidad }}</span>
                                         </li>

@@ -45,9 +45,38 @@ def borrarSucursal(request, id):
 def pres (request):
     return render (request,'core/pres.html')
 def finiquitar_pres (request, rut):
+    lote = Lote.objects.all()
     pres = get_pres(rut)
+    estados = [{}]
+    cont = []
+    boo = bool
+    for i in pres:
+        for j in lote:
+            if i['medicamento'] == j.tipo and i['cantidad'] <= j.cantidad:
+                cont.append(True)
+                estados.append({
+                    'id' : i['idReceta'],
+                    'estado' : True
+                })
+                break
+            else:
+                cont.append(False)
+        for x in range(len(cont)):
+            if cont[x] == True:
+                boo = True
+                break
+            else:
+                boo = False
+        if boo == False:
+            estados.append({
+                    'id' : i['idReceta'],
+                    'estado' : False
+                })
+        cont = []
+
     contexto = {'pres' : pres,
-                'rut' : rut}
+                'rut' : rut,
+                'estados' : estados}
     return render (request,'core/finiquitar_pres.html', contexto)
 def stock (request):
     stock = Lote.objects.all()
