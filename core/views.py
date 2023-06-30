@@ -101,7 +101,7 @@ def stock (request):
     return render (request,'core/stock.html', contexto)
 def addstock (request):
     if request.method == 'POST':
-        reservas = Reserva.objects.all().order_by('fecha')
+        reservas = Reserva.objects.all(estado=True).order_by('fecha')
         sucursal = Sucursal.objects.all()[0]
         form = LoteForm(request.POST)
         if form.is_valid():
