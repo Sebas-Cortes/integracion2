@@ -103,7 +103,35 @@
     {% elif res == False %}
     <div class="row">
         <div class="col-4"></div>
-        <div class="col-4"><p>Reserva pendiente de stock</p></div>
+        <div class="col-4">
+            <div class="card-body">
+
+
+                <div class="row ">
+                    <div class="card form-body" style="border-color: #02fa17">
+
+                        <div class="row" style="text-align: center;">
+                            <div class="col-12">
+                                <br>
+                                <p class="h1 " style="font-family:Goldman;text-decoration:none; font-size: 200%;">El stock se ha reservado y está pendiente</p></div>
+                            </div>
+
+                                <button class="boton " href="{% url 'inicio' %}" style="text-decoration-color: white; text-align: center;"  name="inicio"><i
+                                    class="bi bi-arrow-return-left" style="width: 30%; height: 30%;"></i> Volver al inicio <br></button>
+                                <br>
+
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+
+
+            </div>
+            
         <div class="col-4"></div>
     </div>
     {% else %}
