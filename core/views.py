@@ -47,6 +47,9 @@ def borrarSucursal(request, id):
 def pres (request):
     return render (request,'core/pres.html')
 def finiquitar_pres (request, rut):
+    if len(pres) == 0:
+        messages.error(request, 'Error: No hay prescripcion para ese rut')
+        return redirect('inicio')
     lote = Lote.objects.all()
     pres = get_pres(rut)
     estados = []
@@ -54,9 +57,6 @@ def finiquitar_pres (request, rut):
     boo = bool
     disp = bool
     id = pres[0]['prescripcion']
-    if len(pres) == 0:
-        messages.error(request, 'Error: No hay prescripcion para ese rut')
-        return redirect('inicio')
     for i in pres:
         for j in lote:
             if i['medicamento'] == j.tipo and i['cantidad'] <= j.cantidad:
