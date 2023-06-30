@@ -54,6 +54,9 @@ def finiquitar_pres (request, rut):
     boo = bool
     disp = bool
     id = pres[0]['prescripcion']
+    if pres == None:
+        messages.error(request, 'Error: No hay prescripcion para ese rut')
+        return redirect('inicio')
     for i in pres:
         for j in lote:
             if i['medicamento'] == j.tipo and i['cantidad'] <= j.cantidad:
