@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block titulo %}
-<title>¡Bienvenido!| Cesfam</title>
+<title>Reservas | Cesfam</title>
 {% endblock titulo %}
 
 {% block all %}
@@ -21,7 +21,7 @@
         <div class="card , col-md-3 col-sm-12  col-xs-12, mx-auto form-body"
             style="width: 100%; margin-top: 5%; margin-bottom: 10%; border-color: #02fa17; ">
             <div class="card-header" style="text-align: center;">
-                <div class="h1 card-tittle  " style="font-family:Goldman;text-decoration:none; font-size: 500%;">Prescripciones
+                <div class="h1 card-tittle  " style="font-family:Goldman;text-decoration:none; font-size: 500%;">Reservas
                 </div>
             </div>
             <div class="row">
@@ -48,7 +48,7 @@
                                 <div class="row">
                                     <div class="col-4"></div>
                                     <div class="col-4">
-                                        <form action="{% url 'consultaPres' %}" method="post">
+                                        <form action="{% url 'consultarRes' %}" method="post">
                                             {% csrf_token %}
                                             <p class="text-center fs-4 fw-bold">Ingrese el rut del paciente:</p>
                                             <input class="form-control mb-3" type="text" name="pres" id="pres">
