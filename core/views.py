@@ -47,11 +47,11 @@ def borrarSucursal(request, id):
 def pres (request):
     return render (request,'core/pres.html')
 def finiquitar_pres (request, rut):
+    pres = get_pres(rut)
     if len(pres) == 0:
         messages.error(request, 'Error: No hay prescripcion para ese rut')
         return redirect('inicio')
     lote = Lote.objects.all()
-    pres = get_pres(rut)
     estados = []
     cont = []
     boo = bool
