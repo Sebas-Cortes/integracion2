@@ -105,9 +105,14 @@ def addstock (request):
         sucursal = Sucursal.objects.all()[0]
         form = LoteForm(request.POST)
         if form.is_valid():
-            guardado = form.save(commit=False)
-            guardado.sucursal = sucursal
-            guardado.save()
+            try:
+                lotes = Lote.objects.get(tipo = form.cleaned_data['tipo'])
+                lotes.cantidad = lotes.cantidad + form.cleaned_data['cantidad']
+                lotes.save() 
+            except Lote.DoesNotExist:
+                guardado = form.save(commit=False)
+                guardado.sucursal = sucursal
+                guardado.save()
             nombre = form.cleaned_data['tipo']
             messages.success(request, f'Medicamento {nombre} agregado con exito')
             for r in reservas:
