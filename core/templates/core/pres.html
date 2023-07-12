@@ -51,7 +51,7 @@
                                         <form action="{% url 'consultaPres' %}" method="post">
                                             {% csrf_token %}
                                             <p class="text-center fs-4 fw-bold">Ingrese el rut del paciente:</p>
-                                            <input class="form-control mb-3" type="text" name="pres" id="pres">
+                                            <input class="form-control mb-3" type="text" name="pres" id="pres" required>
                                             <button type="submit" class="btn btn-success mb-1 boton form-control"><i class="bi bi-search" style="width: 30%; height: 30%;"></i> Buscar prescripción</button>
                                         </form>
                                     </div>

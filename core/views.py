@@ -49,9 +49,12 @@ def pres (request):
 def finiquitar_pres (request, rut):
     pres = get_pres(rut)
     if len(pres) == 0:
-        messages.error(request, 'Error: No hay prescripcion para ese rut')
+        messages.warning(request, 'Error: No hay prescripcion para ese rut')
         return redirect('inicio')
     lote = Lote.objects.all()
+    if len(lote) <= 0:
+        messages.warning(request, 'Error: No existe stock alguno')
+        return redirect('inicio')
     estados = []
     cont = []
     boo = bool
